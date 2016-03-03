@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <meta name="description" content="TODO">
+        <meta name="keywords" content="TODO">
+        <meta name="author" content="Jakey.Chen">
+        {% load staticfiles %}
+        <link rel="stylesheet" type="text/css" href="{% static 'todo/css/bootstrap.min.css' %}"/>
+        <link rel="stylesheet" type="text/css" href="{% static 'todo/css/style.css' %}"/>
+        <script src="{% static 'todo/js/jquery-2.2.1.min.js' %}"></script>
+        <script src="{% static 'todo/js/bootstrap.min.js' %}"></script>
+    </head>
+
+    <body> 
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table table-condensed">
+                        <thead>
+                            <tr>
+                                <td colspan="6">
+                                    <h3 class="text-success">待办事项</h3>
+                                </td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for todo in latest_todo_list %}
+                                {% if todo.priority == '0' %}
+                                    <tr class='danger'>
+                                {% endif %}
+                                {% if todo.priority == '1' %}
+                                    <tr class='warning'>
+                                {% endif %}
+                                {% if todo.priority == '2' %}
+                                    <tr class='info'>
+                                {% endif %}
+                                    <td>{{ todo.todo }}</td>
+                                    <td>
+                                        <button class="btn btn-link"><span class="glyphicon glyphicon-repeat"></span></button>
+                                        <button class="btn btn-link"><span class="glyphicon glyphicon-edit"></span></button>
+                                        <button class="btn btn-link"><span class="glyphicon glyphicon-trash"></span></button>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
