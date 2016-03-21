@@ -1,3 +1,17 @@
-li a {
-    color: green;
+tr td{
+    opacity:0.8;
+}
+
+h1 {
+    text-align:center;
+    margin: 0 auto;
+}
+
+.table_title {
+    opacity:0.9;
+    background-color: skyblue;
+}
+
+body {
+    background: url("../images/bg.jpg");
 }

@@ -21,3 +21,17 @@ class IndexView(generic.ListView):
         return Todo.objects.filter(
             pubtime__lte=timezone.now()
         ).order_by('-pubtime')[:10]
+
+def del_todo():
+    p = get_object_or_404(Todo, pk=todo_id)
+    try:
+        selected_choice = p.choice_set.get(pk=request.POST["choice"])
+    except (KeyError, Choice.DoesNotExist):
+        return render(request, "polls/detail.html", {
+            "question": p,
+            "error_message": "You didn't select a choice."
+        })
+    else:
+        selected_choice.votes += 1
+        selected_choice.save()
+        return HttpResponseRedirect(reverse("polls:results", args=(p.id,)))
